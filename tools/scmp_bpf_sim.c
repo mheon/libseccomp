@@ -227,27 +227,29 @@ int main(int argc, char *argv[])
 	while ((opt = getopt(argc, argv, "a:f:h:s:v0:1:2:3:4:5:")) > 0) {
 		switch (opt) {
 		case 'a':
-			if (strcmp(optarg, "x86") == 0)
+			if (strcasecmp(optarg, "x86") == 0 ||
+			    strcasecmp(optarg, "386") == 0)
 				arch = AUDIT_ARCH_I386;
-			else if (strcmp(optarg, "x86_64") == 0)
+			else if (strcasecmp(optarg, "x86_64") == 0 ||
+				 strcasecmp(optarg, "amd64") == 0)
 				arch = AUDIT_ARCH_X86_64;
-			else if (strcmp(optarg, "x32") == 0)
+			else if (strcasecmp(optarg, "x32") == 0)
 				arch = AUDIT_ARCH_X86_64;
-			else if (strcmp(optarg, "arm") == 0)
+			else if (strcasecmp(optarg, "arm") == 0)
 				arch = AUDIT_ARCH_ARM;
-			else if (strcmp(optarg, "aarch64") == 0)
+			else if (strcasecmp(optarg, "aarch64") == 0)
 				arch = AUDIT_ARCH_AARCH64;
-			else if (strcmp(optarg, "mips") == 0)
+			else if (strcasecmp(optarg, "mips") == 0)
 				arch = AUDIT_ARCH_MIPS;
-			else if (strcmp(optarg, "mipsel") == 0)
+			else if (strcasecmp(optarg, "mipsel") == 0)
 				arch = AUDIT_ARCH_MIPSEL;
-			else if (strcmp(optarg, "mips64") == 0)
+			else if (strcasecmp(optarg, "mips64") == 0)
 				arch = AUDIT_ARCH_MIPS64;
-			else if (strcmp(optarg, "mipsel64") == 0)
+			else if (strcasecmp(optarg, "mipsel64") == 0)
 				arch = AUDIT_ARCH_MIPSEL64;
-			else if (strcmp(optarg, "mips64n32") == 0)
+			else if (strcasecmp(optarg, "mips64n32") == 0)
 				arch = AUDIT_ARCH_MIPS64N32;
-			else if (strcmp(optarg, "mipsel64n32") == 0)
+			else if (strcasecmp(optarg, "mipsel64n32") == 0)
 				arch = AUDIT_ARCH_MIPSEL64N32;
 			else
 				exit_fault(EINVAL);

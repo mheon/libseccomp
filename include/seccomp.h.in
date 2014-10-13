@@ -100,14 +100,16 @@ struct scmp_arg_cmp {
 #define SCMP_ARCH_NATIVE	0
 
 /**
- * The x86 (32-bit) architecture token
+ * The x86 (32-bit) architecture tokens
  */
 #define SCMP_ARCH_X86		AUDIT_ARCH_I386
+#define SCMP_ARCH_386		SCMP_ARCH_X86
 
 /**
- * The x86-64 (64-bit) architecture token
+ * The x86-64 (64-bit) architecture tokens
  */
 #define SCMP_ARCH_X86_64	AUDIT_ARCH_X86_64
+#define SCMP_ARCH_AMD64		SCMP_ARCH_X86_64
 
 /**
  * The x32 (32-bit x86_64) architecture token

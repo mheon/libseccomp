@@ -136,27 +136,29 @@ const struct arch_def *arch_def_lookup(uint32_t token)
  */
 const struct arch_def *arch_def_lookup_name(const char *arch_name)
 {
-	if (strcmp(arch_name, "x86") == 0)
+	if (strcasecmp(arch_name, "x86") == 0 ||
+	    strcasecmp(arch_name, "386") == 0)
 		return &arch_def_x86;
-	else if (strcmp(arch_name, "x86_64") == 0)
+	else if (strcasecmp(arch_name, "x86_64") == 0 ||
+		 strcasecmp(arch_name, "amd64") == 0)
 		return &arch_def_x86_64;
-	else if (strcmp(arch_name, "x32") == 0)
+	else if (strcasecmp(arch_name, "x32") == 0)
 		return &arch_def_x32;
-	else if (strcmp(arch_name, "arm") == 0)
+	else if (strcasecmp(arch_name, "arm") == 0)
 		return &arch_def_arm;
-	else if (strcmp(arch_name, "aarch64") == 0)
+	else if (strcasecmp(arch_name, "aarch64") == 0)
 		return &arch_def_aarch64;
-	else if (strcmp(arch_name, "mips") == 0)
+	else if (strcasecmp(arch_name, "mips") == 0)
 		return &arch_def_mips;
-	else if (strcmp(arch_name, "mipsel") == 0)
+	else if (strcasecmp(arch_name, "mipsel") == 0)
 		return &arch_def_mipsel;
-	else if (strcmp(arch_name, "mips64") == 0)
+	else if (strcasecmp(arch_name, "mips64") == 0)
 		return &arch_def_mips64;
-	else if (strcmp(arch_name, "mipsel64") == 0)
+	else if (strcasecmp(arch_name, "mipsel64") == 0)
 		return &arch_def_mipsel64;
-	else if (strcmp(arch_name, "mips64n32") == 0)
+	else if (strcasecmp(arch_name, "mips64n32") == 0)
 		return &arch_def_mips64n32;
-	else if (strcmp(arch_name, "mipsel64n32") == 0)
+	else if (strcasecmp(arch_name, "mipsel64n32") == 0)
 		return &arch_def_mipsel64n32;
 
 	return NULL;
