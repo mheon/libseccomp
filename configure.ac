@@ -146,6 +146,7 @@ AC_CONFIG_FILES([
 	include/Makefile
 	src/Makefile
 	src/python/Makefile
+	src/golang/Makefile
 	tools/Makefile
 	tests/Makefile
 	doc/Makefile

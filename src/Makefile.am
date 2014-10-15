@@ -20,6 +20,7 @@ SUBDIRS = .
 if ENABLE_PYTHON
 SUBDIRS += python
 endif
+SUBDIRS += golang
 
 SOURCES_ARCH = \
 	arch.c arch.h \
