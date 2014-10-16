@@ -27,6 +27,9 @@ CHK_C_LIST="include/seccomp.h.in \
 	    tools/*.c tools/*.h"
 CHK_C_EXCLUDE=""
 
+CHK_GO_LIST="src/golang/*.go"
+CHK_GO_EXCLUDE=""
+
 ####
 # functions
 
@@ -82,6 +85,21 @@ function tool_c_style() {
 }
 
 #
+# Check the formatting on a Go source file
+#
+# Arguments:
+#     1    File to check
+#
+function tool_go_style() {
+	[[ -z "$1" || ! -r "$1" ]] && return
+
+	gofmt -s < "$1" \
+		| diff -pu --label="$1.orig" "$1" --label="$1" -
+
+	# XXX - add golint support -> https://github.com/golang/lint
+}
+
+#
 # Perform all known syntax checks for the configured C sources/headers
 #
 function check_c() {
@@ -92,10 +110,22 @@ function check_c() {
 	done
 }
 
+#
+# Perform all known syntax checks for the configured Go sources
+#
+function check_go() {
+	for i in $CHK_GO_LIST; do
+		echo "$CHK_GO_EXCLUDE" | grep -q "$i" && continue
+		echo "Differences for $i"
+		tool_go_style "$i"
+	done
+}
+
 ####
 # main
 
 verify_deps astyle
+verify_deps gofmt
 
 while getopts "h" opt; do
 	case $opt in
@@ -110,6 +140,7 @@ done
 echo "=============== $(date) ==============="
 echo "Code Syntax Check Results (\"check-syntax $*\")"
 check_c
+check_go
 echo "============================================================"
 
 # exit
